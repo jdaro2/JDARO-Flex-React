@@ -255,9 +255,18 @@ const DetailsPage = () => {
         >
           Videos
         </Heading>
+        <Text
+          fontSize={"m"}
+          mb="5"
+          fontWeight={"bold"}
+          fontStyle={"oblique"}
+          textTransform={"uppercase"}
+        >
+          Trailer
+        </Text>
         <VideoComponent id={video?.key} />
         <Flex mt="5" mb="10" overflowX={"scroll"} gap={"5"}>
-          {videos &&
+          {videos?.length !== 0 ? (
             videos?.map((item) => (
               <Box key={item?.id} minW={"290px"}>
                 <VideoComponent id={item?.key} small />
@@ -270,7 +279,29 @@ const DetailsPage = () => {
                   {item?.name}
                 </Text>
               </Box>
-            ))}
+            ))
+          ) : (
+            <Box>
+              <Text
+                fontSize={"m"}
+                mb="5"
+                fontWeight={"bold"}
+                fontStyle={"oblique"}
+                textTransform={"uppercase"}
+              >
+                Extras
+              </Text>
+              <Text
+                fontSize={"md"}
+                fontWeight={"bold"}
+                mt="2"
+                noOfLines={"2"}
+                textTransform={"uppercase"}
+              >
+                No extras to display
+              </Text>
+            </Box>
+          )}
         </Flex>
       </Container>
     </Box>
