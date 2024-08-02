@@ -240,7 +240,7 @@ const DetailsPage = () => {
           {cast?.length === 0 && <Text>No cast found</Text>}
           {cast &&
             cast?.map((item) => (
-              <Box key={item?.id} minW={"150px"}>
+              <Box key={item?.id} minW={"150px"} maxW={"250px"}>
                 <Image src={`${imagePath}/${item?.profile_path}`} />
               </Box>
             ))}
@@ -265,10 +265,19 @@ const DetailsPage = () => {
           Trailer
         </Text>
         <VideoComponent id={video?.key} />
+        <Text
+          fontSize={"m"}
+          mt="5"
+          fontWeight={"bold"}
+          fontStyle={"oblique"}
+          textTransform={"uppercase"}
+        >
+          Extras
+        </Text>
         <Flex mt="5" mb="10" overflowX={"scroll"} gap={"5"}>
           {videos?.length !== 0 ? (
             videos?.map((item) => (
-              <Box key={item?.id} minW={"290px"}>
+              <Box key={item?.id} minW={"300px"}>
                 <VideoComponent id={item?.key} small />
                 <Text
                   fontSize={"sm"}
@@ -281,26 +290,16 @@ const DetailsPage = () => {
               </Box>
             ))
           ) : (
-            <Box>
-              <Text
-                fontSize={"m"}
-                mb="5"
-                fontWeight={"bold"}
-                fontStyle={"oblique"}
-                textTransform={"uppercase"}
-              >
-                Extras
-              </Text>
-              <Text
-                fontSize={"md"}
-                fontWeight={"bold"}
-                mt="2"
-                noOfLines={"2"}
-                textTransform={"uppercase"}
-              >
-                No extras to display
-              </Text>
-            </Box>
+            <Text
+              fontSize={"md"}
+              fontWeight={"bold"}
+              mt="2"
+              mb="10"
+              noOfLines={"2"}
+              textTransform={"uppercase"}
+            >
+              No extras to display
+            </Text>
           )}
         </Flex>
       </Container>
