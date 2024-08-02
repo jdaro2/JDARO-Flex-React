@@ -5,9 +5,11 @@ import CardComponent from "../components/CardComponent";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [timeWindow, setTimeWindow] = useState("day");
 
   useEffect(() => {
+    setLoading(true);
     fetchTrending(timeWindow)
       .then((res) => {
         // console.log(res, "res");
@@ -15,6 +17,9 @@ const Home = () => {
       })
       .catch((err) => {
         console.log(err, "err");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [timeWindow]);
 
@@ -37,7 +42,7 @@ const Home = () => {
             px="3"
             py="1"
             borderRadius={"20px"}
-            bg={`${timeWindow === "day" ? "gray" : ""}`}
+            bg={`${timeWindow === "day" ? "gray.800" : ""}`}
             onClick={() => setTimeWindow("day")}
           >
             Today
@@ -47,14 +52,14 @@ const Home = () => {
             px="3"
             py="1"
             borderRadius={"20px"}
-            bg={`${timeWindow === "week" ? "gray" : ""}`}
+            bg={`${timeWindow === "week" ? "gray.800" : ""}`}
             onClick={() => setTimeWindow("week")}
           >
             This Week
           </Box>
         </Flex>
       </Flex>
-
+      {loading && <div>Loading...</div>}
       <Grid
         templateColumns={{
           base: "1fr",
