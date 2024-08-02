@@ -280,9 +280,12 @@ const DetailsPage = () => {
               <Box key={item?.id} minW={"300px"}>
                 <VideoComponent id={item?.key} small />
                 <Text
-                  fontSize={"sm"}
+                  textAlign={"center"}
+                  as={"u"}
+                  fontSize={""}
                   fontWeight={"bold"}
                   mt="2"
+                  mb="2"
                   noOfLines={"2"}
                 >
                   {item?.name}
@@ -291,6 +294,7 @@ const DetailsPage = () => {
             ))
           ) : (
             <Text
+              textAlign={"center"}
               fontSize={"md"}
               fontWeight={"bold"}
               mt="2"
