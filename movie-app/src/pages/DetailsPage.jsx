@@ -90,10 +90,10 @@ const DetailsPage = () => {
     fetchData();
   }, [type, id]);
 
-  console.log(video, "video");
-  console.log(videos, "videos");
+  //   console.log(video, "video");
+  //   console.log(videos, "videos");
   //   console.log(cast, "cast");
-  console.log(details, "details");
+  //   console.log(details, "details");
 
   if (loading) {
     return (
