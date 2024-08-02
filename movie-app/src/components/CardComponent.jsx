@@ -32,6 +32,7 @@ const CardComponent = ({ item }) => {
           height={"33%"}
           bg={"rgba(0,0,0,0.9)"}
           opacity={"0"}
+          transition={"opacity 0.3s ease-in-out"}
         >
           <Text>{item?.title || item?.name}</Text>
         </Box>
