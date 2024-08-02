@@ -13,30 +13,87 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import { fetchDetails, imagePath, imagePathOriginal } from "../services/api";
-import { CalendarIcon, CheckCircleIcon, SmallAddIcon } from "@chakra-ui/icons";
-import { ratingToPercentage, resolveRatingColor } from "../utils/helpers";
+import {
+  fetchCredits,
+  fetchDetails,
+  fetchVideos,
+  imagePath,
+  imagePathOriginal,
+} from "../services/api";
+import {
+  CalendarIcon,
+  CheckCircleIcon,
+  SmallAddIcon,
+  TimeIcon,
+} from "@chakra-ui/icons";
+import {
+  minutesToHours,
+  ratingToPercentage,
+  resolveRatingColor,
+} from "../utils/helpers";
+import VideoComponent from "../components/VideoComponent";
 
 const DetailsPage = () => {
   const router = useParams();
   const { type, id } = router;
 
   const [details, setDetails] = useState({});
+  const [cast, setCast] = useState([]);
+  const [video, setVideo] = useState(null);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //   useEffect(() => {
+  //     fetchDetails(type, id)
+  //       .then((res) => {
+  //         console.log(res, "res");
+  //         setDetails(res);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err, "err");
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   }, [type, id]);
+
   useEffect(() => {
-    fetchDetails(type, id)
-      .then((res) => {
-        console.log(res, "res");
-        setDetails(res);
-      })
-      .catch((err) => {
-        console.log(err, "err");
-      })
-      .finally(() => {
+    const fetchData = async () => {
+      try {
+        const [detailsData, creditsData, videosData] = await Promise.all([
+          fetchDetails(type, id),
+          fetchCredits(type, id),
+          fetchVideos(type, id),
+        ]);
+        // Set details
+        setDetails(detailsData);
+
+        // Set cast
+        setCast(creditsData?.cast.slice(0, 10));
+
+        // Set video/s
+        const video = videosData?.results?.find(
+          (video) => video?.type === "Trailer"
+        );
+        setVideo(video);
+        const videos = videosData?.results
+          ?.filter((video) => video?.type !== "Trailer")
+          ?.slice(0, 10);
+        setVideos(videos);
+      } catch (error) {
+        console.log(error, "error");
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchData();
   }, [type, id]);
+
+  console.log(video, "video");
+  console.log(videos, "videos");
+  //   console.log(cast, "cast");
+  console.log(details, "details");
 
   if (loading) {
     return (
@@ -89,6 +146,28 @@ const DetailsPage = () => {
                     {new Date(releaseDate).toLocaleDateString("en-US")} {"US"}
                   </Text>
                 </Flex>
+                {type === "movie" ? (
+                  <>
+                    <Box>*</Box>
+                    <Flex alignItems={"center"}>
+                      <TimeIcon mr="2" color={"gray.400"} />
+                      <Text fontSize={"sm"}>
+                        {minutesToHours(details?.runtime)}
+                      </Text>
+                    </Flex>
+                  </>
+                ) : (
+                  <>
+                    <Box>*</Box>
+                    <Flex alignItems={"center"}>
+                      <TimeIcon mr="2" color={"gray.400"} />
+                      <Text fontSize={"sm"}>
+                        {details?.number_of_seasons} Seasons {" | "}
+                        {details?.number_of_episodes} episodes
+                      </Text>
+                    </Flex>
+                  </>
+                )}
               </Flex>
 
               <Flex alignItems={"center"} gap={"4"}>
@@ -144,13 +223,56 @@ const DetailsPage = () => {
               </Text>
               <Flex mt="6" gap="2">
                 {details?.genres?.map((genre) => (
-                  <Badge key={genre?.key}>{genre?.name}</Badge>
+                  <Badge key={genre?.id} p="1">
+                    {genre?.name}
+                  </Badge>
                 ))}
               </Flex>
             </Box>
           </Flex>
         </Container>
       </Box>
+      <Container maxW={"container.xl"} pb="10">
+        <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
+          Cast
+        </Heading>
+        <Flex mt="5" mb="10" overflowX={"scroll"} gap="5">
+          {cast?.length === 0 && <Text>No cast found</Text>}
+          {cast &&
+            cast?.map((item) => (
+              <Box key={item?.id} minW={"150px"}>
+                <Image src={`${imagePath}/${item?.profile_path}`} />
+              </Box>
+            ))}
+        </Flex>
+
+        <Heading
+          as="h2"
+          fontSize={"md"}
+          textTransform={"uppercase"}
+          mt="10"
+          mb="5"
+        >
+          Videos
+        </Heading>
+        <VideoComponent id={video?.key} />
+        <Flex mt="5" mb="10" overflowX={"scroll"} gap={"5"}>
+          {videos &&
+            videos?.map((item) => (
+              <Box key={item?.id} minW={"290px"}>
+                <VideoComponent id={item?.key} small />
+                <Text
+                  fontSize={"sm"}
+                  fontWeight={"bold"}
+                  mt="2"
+                  noOfLines={"2"}
+                >
+                  {item?.name}
+                </Text>
+              </Box>
+            ))}
+        </Flex>
+      </Container>
     </Box>
   );
 };
