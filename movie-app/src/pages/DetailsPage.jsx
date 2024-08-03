@@ -92,8 +92,8 @@ const DetailsPage = () => {
   }, [type, id]);
 
   //   console.log(video, "video");
-  console.log(videos, "videos");
-  console.log(cast, "cast");
+  // console.log(videos, "videos");
+  // console.log(cast, "cast");
   // console.log(details, "details");
 
   if (loading) {
