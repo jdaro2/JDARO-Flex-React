@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Badge,
   Box,
@@ -36,6 +36,7 @@ import VideoComponent from "../components/VideoComponent";
 const DetailsPage = () => {
   const router = useParams();
   const { type, id } = router;
+  const actorUrl = "https://www.themoviedb.org/person";
 
   const [details, setDetails] = useState({});
   const [cast, setCast] = useState([]);
@@ -92,7 +93,7 @@ const DetailsPage = () => {
 
   //   console.log(video, "video");
   //   console.log(videos, "videos");
-  //   console.log(cast, "cast");
+  console.log(cast, "cast");
   //   console.log(details, "details");
 
   if (loading) {
@@ -162,8 +163,8 @@ const DetailsPage = () => {
                     <Flex alignItems={"center"}>
                       <TimeIcon mr="2" color={"gray.400"} />
                       <Text fontSize={"sm"}>
-                        {details?.number_of_seasons} Seasons {" | "}
-                        {details?.number_of_episodes} episodes
+                        {details?.number_of_seasons} Season/s {" | "}
+                        {details?.number_of_episodes} episode/s
                       </Text>
                     </Flex>
                   </>
@@ -240,8 +241,51 @@ const DetailsPage = () => {
           {cast?.length === 0 && <Text>No cast found</Text>}
           {cast &&
             cast?.map((item) => (
-              <Box key={item?.id} minW={"150px"} maxW={"250px"}>
-                <Image src={`${imagePath}/${item?.profile_path}`} />
+              <Box
+                key={item?.id}
+                minW={"150px"}
+                _hover={{
+                  transform: { base: "scale(1)", md: "scale(1.08)" },
+                  transition: "transform 0.2s ease-in-out",
+                  zIndex: "10",
+                  "& .overlay": {
+                    opacity: 1,
+                  },
+                }}
+              >
+                <Image
+                  src={`${imagePath}/${item?.profile_path}`}
+                  w={"100%"}
+                  height={"240px"}
+                  objectFit={"cover"}
+                  borderRadius={"sm"}
+                />
+                <Box
+                  className="overlay"
+                  position={"absolute"}
+                  p="2"
+                  bottom={"0"}
+                  left={"0"}
+                  w={"100%"}
+                  height={"33%"}
+                  bg={"rgba(0,0,0,0.9)"}
+                  opacity={"0"}
+                  transition={"opacity 0.3s ease-in-out"}
+                >
+                  <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
+                    <Text textAlign={"center"}>{item?.name}</Text>
+                    <Text textAlign={"center"} fontSize={"xs"}>
+                      {item?.character}
+                    </Text>
+                  </Link>
+
+                  <Flex
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    gap={"2"}
+                    mt={"4"}
+                  ></Flex>
+                </Box>
               </Box>
             ))}
         </Flex>
