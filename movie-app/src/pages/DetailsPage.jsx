@@ -10,6 +10,7 @@ import {
   Flex,
   Heading,
   Image,
+  Progress,
   Spinner,
   Text,
 } from "@chakra-ui/react";
@@ -70,7 +71,7 @@ const DetailsPage = () => {
         setDetails(detailsData);
 
         // Set cast
-        setCast(creditsData?.cast.slice(0, 10));
+        setCast(creditsData?.cast.slice(0, 15));
 
         // Set video/s
         const video = videosData?.results?.find(
@@ -98,9 +99,17 @@ const DetailsPage = () => {
 
   if (loading) {
     return (
-      <Flex justify={"center"}>
-        <Spinner size={"xl"} color="purple.500" />
-      </Flex>
+      <Box>
+        <Progress size="xs" isIndeterminate color="purple.500" mb={"20"} />
+        <Flex justify={"center"}>
+          <Spinner
+            size={"xl"}
+            color="purple.500"
+            thickness="7px"
+            speed="0.65s"
+          />
+        </Flex>
+      </Box>
     );
   }
 
@@ -110,6 +119,9 @@ const DetailsPage = () => {
 
   return (
     <Box>
+      {/* <Progress size="xs" isAnimated={true} value={10} /> */}
+      {/* <Progress size="xs" isAnimated={true} value={100} /> */}
+
       <Box
         background={`linear-gradient(rgba(0,0,0,.88), rgba(0,0,0,.88)), url(${imagePathOriginal}/${details?.backdrop_path})`}
         backgroundRepeat={"no-repeat"}
@@ -121,6 +133,8 @@ const DetailsPage = () => {
         display={"flex"}
         alignItems={"center"}
       >
+        <Progress size="xs" isIndeterminate />
+
         <Container maxW={"container.xl"}>
           <Flex
             alignItems={"center"}
