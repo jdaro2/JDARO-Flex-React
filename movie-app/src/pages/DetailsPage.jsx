@@ -274,10 +274,11 @@ const DetailsPage = () => {
                 >
                   <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
                     <Text textAlign={"center"}>{item?.name}</Text>
-                    <Text textAlign={"center"} fontSize={"xs"}>
-                      {item?.character}
-                    </Text>
                   </Link>
+
+                  <Text textAlign={"center"} fontSize={"xs"}>
+                    {item?.character}
+                  </Text>
 
                   <Flex
                     alignItems={"center"}
