@@ -92,9 +92,9 @@ const DetailsPage = () => {
   }, [type, id]);
 
   //   console.log(video, "video");
-  //   console.log(videos, "videos");
+  console.log(videos, "videos");
   console.log(cast, "cast");
-  //   console.log(details, "details");
+  // console.log(details, "details");
 
   if (loading) {
     return (
@@ -224,7 +224,7 @@ const DetailsPage = () => {
               </Text>
               <Flex mt="6" gap="2">
                 {details?.genres?.map((genre) => (
-                  <Badge key={genre?.id} p="1">
+                  <Badge color={"purple.200"} key={genre?.id} p="1">
                     {genre?.name}
                   </Badge>
                 ))}
@@ -253,16 +253,17 @@ const DetailsPage = () => {
                   },
                 }}
               >
-                <Image
-                  src={`${imagePath}/${item?.profile_path}`}
-                  w={"100%"}
-                  height={"240px"}
-                  objectFit={"cover"}
-                  borderRadius={"sm"}
-                />
-                <Box
+                <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
+                  <Image
+                    src={`${imagePath}/${item?.profile_path}`}
+                    w={"100%"}
+                    height={"250px"}
+                    objectFit={"cover"}
+                    borderRadius={"sm"}
+                  />
+                  {/* <Box
                   className="overlay"
-                  position={"absolute"}
+                  position={"relative"}
                   p="2"
                   bottom={"0"}
                   left={"0"}
@@ -271,23 +272,26 @@ const DetailsPage = () => {
                   bg={"rgba(0,0,0,0.9)"}
                   opacity={"0"}
                   transition={"opacity 0.3s ease-in-out"}
-                >
-                  <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
-                    <Text textAlign={"center"}>{item?.name}</Text>
-                  </Link>
+                > */}
+                  <Text textAlign={"center"}>{item?.name}</Text>
 
-                  <Text textAlign={"center"} fontSize={"xs"}>
+                  <Text
+                    textAlign={"center"}
+                    fontSize={"xs"}
+                    color={"purple.200"}
+                  >
                     {item?.character}
                   </Text>
+                </Link>
 
-                  <Flex
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                    gap={"2"}
-                    mt={"4"}
-                  ></Flex>
-                </Box>
+                <Flex
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  gap={"2"}
+                  mt={"4"}
+                ></Flex>
               </Box>
+              // </Box>
             ))}
         </Flex>
 
