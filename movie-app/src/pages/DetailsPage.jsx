@@ -163,7 +163,7 @@ const DetailsPage = () => {
                     <Flex alignItems={"center"}>
                       <TimeIcon mr="2" color={"gray.400"} />
                       <Text fontSize={"sm"}>
-                        {details?.number_of_seasons} Season/s {" | "}
+                        {details?.number_of_seasons} season/s {" | "}
                         {details?.number_of_episodes} episode/s
                       </Text>
                     </Flex>

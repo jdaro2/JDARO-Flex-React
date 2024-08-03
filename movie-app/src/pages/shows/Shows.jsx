@@ -51,7 +51,7 @@ const Shows = () => {
           <option value="vote_average.desc&vote_count.gte=1000">
             Top Rated
           </option>
-          <option value="revenue.desc">Top Grossing</option>
+          <option value="vote_count.desc">Top Voted</option>
         </Select>
       </Flex>
 
