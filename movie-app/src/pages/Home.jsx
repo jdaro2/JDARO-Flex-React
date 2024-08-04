@@ -6,7 +6,6 @@ import {
   Grid,
   Heading,
   Skeleton,
-  Spinner,
 } from "@chakra-ui/react";
 import { fetchTrending } from "../services/api";
 import CardComponent from "../components/CardComponent";
@@ -32,21 +31,6 @@ const Home = () => {
   }, [timeWindow]);
 
   console.log(data, "data");
-
-  if (loading) {
-    return (
-      <Box>
-        <Flex justify={"center"}>
-          <Spinner
-            size={"xl"}
-            color="purple.500"
-            thickness="7px"
-            speed="0.65s"
-          />
-        </Flex>
-      </Box>
-    );
-  }
 
   return (
     <Container maxW={"container.xl"}>
