@@ -1,3 +1,4 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import { Box, Container, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
@@ -23,7 +24,9 @@ const Navbar = () => {
             <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
             <Link to="/shows">TV Shows</Link>
-            <Link to="/search">Search</Link>
+            <Link to="/search">
+              <SearchIcon />
+            </Link>
           </Flex>
         </Flex>
       </Container>

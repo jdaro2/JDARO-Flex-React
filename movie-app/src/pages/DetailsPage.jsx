@@ -269,7 +269,7 @@ const DetailsPage = () => {
             cast?.map((item) => (
               <Box
                 key={item?.id}
-                minW={"150px"}
+                minW={"175px"}
                 _hover={{
                   transform: { base: "scale(1)", md: "scale(1.08)" },
                   transition: "transform 0.2s ease-in-out",
