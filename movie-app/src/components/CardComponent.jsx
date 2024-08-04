@@ -3,6 +3,7 @@ import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { imagePath } from "../services/api";
 import { StarIcon } from "@chakra-ui/icons";
+import { handleScrollToTop } from "../utils/helpers";
 
 const CardComponent = ({ item, type }) => {
   const actorUrl = "https://www.themoviedb.org/person";
@@ -55,7 +56,7 @@ const CardComponent = ({ item, type }) => {
           </Box>
         </Link>
       ) : (
-        <Link to={`/${type}/${item?.id}`}>
+        <Link to={`/${type}/${item?.id}`} onClick={handleScrollToTop}>
           <Box
             position={"relative"}
             transform={"scale(1)"}

@@ -65,3 +65,13 @@ export const searchData = async (query, page) => {
   );
   return res?.data;
 };
+
+// Recommended Movies
+
+export const fetchRecommendations = async (type, id) => {
+  const res = await axios.get(
+    `${baseUrl}/${type}/${id}/recommendations?api_key=${apiKey}`
+  );
+
+  return res?.data;
+};

@@ -8,15 +8,18 @@ import {
   CircularProgressLabel,
   Container,
   Flex,
+  Grid,
   Heading,
   Image,
   Progress,
+  Skeleton,
   Spinner,
   Text,
 } from "@chakra-ui/react";
 import {
   fetchCredits,
   fetchDetails,
+  fetchRecommendations,
   fetchVideos,
   imagePath,
   imagePathOriginal,
@@ -33,6 +36,7 @@ import {
   resolveRatingColor,
 } from "../utils/helpers";
 import VideoComponent from "../components/VideoComponent";
+import CardComponent from "../components/CardComponent";
 
 const DetailsPage = () => {
   const router = useParams();
@@ -43,6 +47,7 @@ const DetailsPage = () => {
   const [cast, setCast] = useState([]);
   const [video, setVideo] = useState(null);
   const [videos, setVideos] = useState([]);
+  const [recommendation, setRecommendation] = useState([]);
   const [loading, setLoading] = useState(true);
 
   //   useEffect(() => {
@@ -62,11 +67,13 @@ const DetailsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [detailsData, creditsData, videosData] = await Promise.all([
-          fetchDetails(type, id),
-          fetchCredits(type, id),
-          fetchVideos(type, id),
-        ]);
+        const [detailsData, creditsData, videosData, recommendationsData] =
+          await Promise.all([
+            fetchDetails(type, id),
+            fetchCredits(type, id),
+            fetchVideos(type, id),
+            fetchRecommendations(type, id),
+          ]);
         // Set details
         setDetails(detailsData);
 
@@ -82,6 +89,10 @@ const DetailsPage = () => {
           ?.filter((video) => video?.type !== "Trailer")
           ?.slice(0, 10);
         setVideos(videos);
+
+        // Set recommendations
+        setRecommendation(recommendationsData?.results.slice(0, 12));
+        console.log(recommendationsData, "recommendations data");
       } catch (error) {
         console.log(error, "error");
       } finally {
@@ -95,7 +106,8 @@ const DetailsPage = () => {
   //   console.log(video, "video");
   // console.log(videos, "videos");
   // console.log(cast, "cast");
-  // console.log(details, "details");
+  console.log(details, "details");
+  console.log(recommendation, "recommendation");
 
   if (loading) {
     return (
@@ -369,6 +381,34 @@ const DetailsPage = () => {
             </Text>
           )}
         </Flex>
+        <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
+          Recommendations
+        </Heading>
+        <Box mt="10">
+          <Grid
+            templateColumns={{
+              base: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+              lg: "repeat(4, 1fr)",
+            }}
+            gap={"4"}
+          >
+            {recommendation?.length > 0 &&
+              !loading &&
+              recommendation?.map((item, i) =>
+                loading ? (
+                  <Skeleton height={300} key={i} />
+                ) : (
+                  <CardComponent
+                    key={item?.id}
+                    item={item}
+                    type={item?.media_type}
+                  />
+                )
+              )}
+          </Grid>
+        </Box>
       </Container>
     </Box>
   );
