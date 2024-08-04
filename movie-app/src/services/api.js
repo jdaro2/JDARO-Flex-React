@@ -56,3 +56,12 @@ export const fetchTvSeries = async (page, sortBy) => {
   );
   return res?.data;
 };
+
+// Search
+
+export const searchData = async (query, page) => {
+  const res = await axios.get(
+    `${baseUrl}/search/multi?api_key=${apiKey}&query=${query}&page=${page}`
+  );
+  return res?.data;
+};
