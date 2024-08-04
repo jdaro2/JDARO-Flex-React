@@ -23,7 +23,7 @@ const Navbar = () => {
           <Flex gap="4" alignItems={"center"}>
             <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
-            <Link to="/shows">TV Shows</Link>
+            <Link to="/shows">Television</Link>
             <Link to="/search">
               <SearchIcon />
             </Link>

@@ -48,7 +48,7 @@ const Search = () => {
 
       <form onSubmit={handleSearch}>
         <Input
-          placeholder="Search movies, tv shows..."
+          placeholder="Search movies, tv shows, actors..."
           _placeholder={{ color: "gray.100" }}
           value={tempSearchValue}
           onChange={(e) => setTempSearchValue(e.target.value)}
