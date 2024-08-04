@@ -1,12 +1,10 @@
 import {
-  Box,
   Container,
   Flex,
   Grid,
   Heading,
   Select,
   Skeleton,
-  Spinner,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "../../services/api";
@@ -32,21 +30,6 @@ const Movies = () => {
       .catch((err) => console.log(err, "err"))
       .finally(() => setIsLoading(false));
   }, [activePage, sortBy]);
-
-  if (isLoading === true) {
-    return (
-      <Box>
-        <Flex justify={"center"}>
-          <Spinner
-            size={"xl"}
-            color="purple.500"
-            thickness="7px"
-            speed="0.65s"
-          />
-        </Flex>
-      </Box>
-    );
-  }
 
   return (
     <Container maxW={"container.xl"}>
