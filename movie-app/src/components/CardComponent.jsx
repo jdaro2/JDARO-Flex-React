@@ -15,6 +15,7 @@ const CardComponent = ({ item, type }) => {
           <Box
             position={"relative"}
             transform={"scale(1)"}
+            height={"100%"}
             _hover={{
               transform: { base: "scale(1)", md: "scale(1.08)" },
               transition: "transform 0.2s ease-in-out",
@@ -60,6 +61,7 @@ const CardComponent = ({ item, type }) => {
           <Box
             position={"relative"}
             transform={"scale(1)"}
+            height={"100%"}
             _hover={{
               transform: { base: "scale(1)", md: "scale(1.08)" },
               transition: "transform 0.2s ease-in-out",
