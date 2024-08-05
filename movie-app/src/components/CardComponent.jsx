@@ -25,11 +25,23 @@ const CardComponent = ({ item, type }) => {
               },
             }}
           >
-            <Image
-              src={`${imagePath}/${item?.profile_path}`}
-              alt={item?.title || item?.name}
-              height={"100%"}
-            />
+            {item?.profile_path ? (
+              <Image
+                src={`${imagePath}/${item?.profile_path}`}
+                alt={item?.title || item?.name}
+                height={"100%"}
+              />
+            ) : (
+              <Image
+                src="./Default-Actor.png"
+                alt={item?.title || item?.name}
+                w={"100%"}
+                height={"100%"}
+                objectFit={"cover"}
+                borderRadius={"sm"}
+              />
+            )}
+
             <Box
               className="overlay"
               position={"absolute"}
@@ -71,11 +83,23 @@ const CardComponent = ({ item, type }) => {
               },
             }}
           >
-            <Image
-              src={`${imagePath}/${item?.poster_path}`}
-              alt={item?.title || item?.name}
-              height={"100%"}
-            />
+            {item?.poster_path ? (
+              <Image
+                src={`${imagePath}/${item?.poster_path}`}
+                alt={item?.title || item?.name}
+                height={"100%"}
+              />
+            ) : (
+              <Image
+                src="./no-image-available.jpg"
+                alt={item?.title || item?.name}
+                w={"100%"}
+                height={"100%"}
+                objectFit={"cover"}
+                borderRadius={"sm"}
+              />
+            )}
+
             <Box
               className="overlay"
               position={"absolute"}
