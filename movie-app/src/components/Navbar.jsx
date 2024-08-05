@@ -1,8 +1,29 @@
 import { SearchIcon } from "@chakra-ui/icons";
-import { Box, Container, Flex } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Container,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 const Navbar = () => {
+  const { user, signInWithGoogle, logout } = useAuth();
+
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithGoogle();
+      console.log("success");
+    } catch (error) {
+      console.log(error, "error");
+    }
+  };
+
   return (
     <Box py="4" mb="2">
       <Container maxW={"container.xl"}>
@@ -27,6 +48,26 @@ const Navbar = () => {
             <Link to="/search">
               <SearchIcon />
             </Link>
+            {user && (
+              <Menu>
+                <MenuButton>
+                  <Avatar
+                    bg={"purple.500"}
+                    color={"white"}
+                    size={"sm"}
+                    name={user?.email}
+                    src={user?.photoURL}
+                  />
+                </MenuButton>
+                <MenuList>
+                  <Link to="/">
+                    <MenuItem>Watch List</MenuItem>
+                  </Link>
+                  <MenuItem onClick={logout}>Logout</MenuItem>
+                </MenuList>
+              </Menu>
+            )}
+            {!user && <Link onClick={handleGoogleLogin}>Log In</Link>}
           </Flex>
         </Flex>
       </Container>
