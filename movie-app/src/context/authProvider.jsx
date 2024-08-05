@@ -8,21 +8,15 @@ import {
   //   signInWithEmailAndPassword,
 } from "firebase/auth";
 import PropTypes from "prop-types";
+import { useToast } from "@chakra-ui/react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const toast = useToast();
+
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  function signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    return signInWithPopup(auth, provider);
-  }
-
-  function logout() {
-    return signOut(auth);
-  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
@@ -34,6 +28,27 @@ export const AuthProvider = ({ children }) => {
       setIsLoading(false);
     });
   }, []);
+
+  async function signInWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+    toast({
+      title: "You have logged in!",
+      description: `Welcome to JDARO!`,
+      status: "success",
+      isClosable: true,
+    });
+  }
+
+  async function logout() {
+    await signOut(auth);
+    toast({
+      title: "Logged out",
+      description: "You have successfully logged out",
+      status: "success",
+      isClosable: true,
+    });
+  }
 
   return (
     <AuthContext.Provider value={{ user, isLoading, signInWithGoogle, logout }}>
