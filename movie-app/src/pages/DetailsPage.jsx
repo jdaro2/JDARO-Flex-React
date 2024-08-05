@@ -338,6 +338,7 @@ const DetailsPage = () => {
                 <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
                   <Image
                     src={`${imagePath}/${item?.profile_path}`}
+                    alt={item?.title || item?.name}
                     w={"100%"}
                     height={"250px"}
                     objectFit={"cover"}
