@@ -207,11 +207,23 @@ const DetailsPage = () => {
             gap="10"
             flexDirection={{ base: "column", md: "row" }}
           >
-            <Image
-              height={"450px"}
-              borderRadius={"sm"}
-              src={`${imagePath}/${details?.poster_path}`}
-            />
+            {details?.poster_path ? (
+              <Image
+                height={"450px"}
+                borderRadius={"sm"}
+                src={`${imagePath}/${details?.poster_path}`}
+              />
+            ) : (
+              <Image
+                src="../no-image-available.jpg"
+                alt={details?.title || details?.name}
+                w={"300px"}
+                height={"400px"}
+                objectFit={"cover"}
+                borderRadius={"sm"}
+              />
+            )}
+
             <Box>
               <Heading fontSize={"3xl"}>
                 {title}{" "}
@@ -336,14 +348,26 @@ const DetailsPage = () => {
                 }}
               >
                 <Link target="_blank" to={`${actorUrl}/${item?.id}`}>
-                  <Image
-                    src={`${imagePath}/${item?.profile_path}`}
-                    alt={item?.title || item?.name}
-                    w={"100%"}
-                    height={"250px"}
-                    objectFit={"cover"}
-                    borderRadius={"sm"}
-                  />
+                  {item?.profile_path ? (
+                    <Image
+                      src={`${imagePath}/${item?.profile_path}`}
+                      alt={item?.title || item?.name}
+                      w={"100%"}
+                      height={"250px"}
+                      objectFit={"cover"}
+                      borderRadius={"sm"}
+                    />
+                  ) : (
+                    <Image
+                      src="./Default-Actor.png"
+                      alt={item?.title || item?.name}
+                      w={"100%"}
+                      height={"250px"}
+                      objectFit={"cover"}
+                      borderRadius={"sm"}
+                    />
+                  )}
+
                   {/* <Box
                   className="overlay"
                   position={"relative"}
