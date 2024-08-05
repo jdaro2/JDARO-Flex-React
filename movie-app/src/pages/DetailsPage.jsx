@@ -115,8 +115,8 @@ const DetailsPage = () => {
   //   console.log(video, "video");
   // console.log(videos, "videos");
   // console.log(cast, "cast");
-  console.log(details, "details");
-  console.log(recommendation, "recommendation");
+  // console.log(details, "details");
+  // console.log(recommendation, "recommendation");
 
   const handleSaveToWatchlist = async () => {
     if (!user) {
