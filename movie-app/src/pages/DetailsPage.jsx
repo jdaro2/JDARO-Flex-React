@@ -15,6 +15,7 @@ import {
   Skeleton,
   Spinner,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import {
   fetchCredits,
@@ -37,11 +38,18 @@ import {
 } from "../utils/helpers";
 import VideoComponent from "../components/VideoComponent";
 import CardComponent from "../components/CardComponent";
+import { useAuth } from "../context/useAuth";
+import { useFirestore } from "../services/firestore";
 
 const DetailsPage = () => {
   const router = useParams();
   const { type, id } = router;
   const actorUrl = "https://www.themoviedb.org/person";
+
+  const { user } = useAuth();
+  const { addToWatchlist, checkIfInWatchlist, removeFromWatchlist } =
+    useFirestore();
+  const toast = useToast();
 
   const [details, setDetails] = useState({});
   const [cast, setCast] = useState([]);
@@ -49,6 +57,7 @@ const DetailsPage = () => {
   const [videos, setVideos] = useState([]);
   const [recommendation, setRecommendation] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isInWatchlist, setIsInWatchlist] = useState(false);
 
   //   useEffect(() => {
   //     fetchDetails(type, id)
@@ -108,6 +117,51 @@ const DetailsPage = () => {
   // console.log(cast, "cast");
   console.log(details, "details");
   console.log(recommendation, "recommendation");
+
+  const handleSaveToWatchlist = async () => {
+    if (!user) {
+      toast({
+        title: "Login to add to watchlist",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      return;
+    }
+    const data = {
+      id: details?.id,
+      title: details?.title || details?.name,
+      type: type,
+      poster_path: details?.poster_path,
+      release_date: details?.release_date || details?.first_air_date,
+      vote_average: details?.vote_average,
+      overview: details?.overview,
+    };
+
+    // console.log(data, "data");
+    const dataId = details?.id?.toString();
+    await addToWatchlist(user?.uid, dataId, data);
+
+    const isSetToWatchlist = await checkIfInWatchlist(user?.uid, dataId);
+    setIsInWatchlist(isSetToWatchlist);
+  };
+
+  useEffect(() => {
+    if (!user) {
+      setIsInWatchlist(false);
+      return;
+    }
+
+    checkIfInWatchlist(user?.uid, id).then((data) => {
+      setIsInWatchlist(data);
+    });
+  }, [id, user, checkIfInWatchlist]);
+
+  const handleRemoveFromWatchlist = async () => {
+    await removeFromWatchlist(user?.uid, id);
+    const isSetToWatchlist = await checkIfInWatchlist(user?.uid, id);
+    setIsInWatchlist(isSetToWatchlist);
+  };
 
   if (loading) {
     return (
@@ -217,22 +271,24 @@ const DetailsPage = () => {
                 <Text display={{ base: "none", md: "initial" }}>
                   User Score
                 </Text>
-                <Button
-                  display={"none"}
-                  leftIcon={<CheckCircleIcon />}
-                  colorScheme="purple"
-                  variant={"outline"}
-                  onClick={() => console.log("click")}
-                >
-                  In watchlist
-                </Button>
-                <Button
-                  leftIcon={<SmallAddIcon />}
-                  variant={"outline"}
-                  onClick={() => console.log("click")}
-                >
-                  Add to watchlist
-                </Button>
+                {isInWatchlist ? (
+                  <Button
+                    leftIcon={<CheckCircleIcon />}
+                    colorScheme="purple"
+                    variant={"outline"}
+                    onClick={handleRemoveFromWatchlist}
+                  >
+                    In watchlist
+                  </Button>
+                ) : (
+                  <Button
+                    leftIcon={<SmallAddIcon />}
+                    variant={"outline"}
+                    onClick={handleSaveToWatchlist}
+                  >
+                    Add to watchlist
+                  </Button>
+                )}
               </Flex>
               <Text
                 color={"gray.400"}

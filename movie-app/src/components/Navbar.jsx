@@ -60,7 +60,7 @@ const Navbar = () => {
                   />
                 </MenuButton>
                 <MenuList>
-                  <Link to="/">
+                  <Link to="/watchlist">
                     <MenuItem>Watch List</MenuItem>
                   </Link>
                   <MenuItem onClick={logout}>Logout</MenuItem>
