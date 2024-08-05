@@ -5,9 +5,11 @@ import {
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
   setDoc,
 } from "firebase/firestore";
 import { useToast } from "@chakra-ui/react";
+import { useCallback } from "react";
 
 // Webhook for various firestore functions
 export const useFirestore = () => {
@@ -88,10 +90,21 @@ export const useFirestore = () => {
     }
   };
 
+  const getWatchlist = useCallback(async (userId) => {
+    const querySnapshot = await getDocs(
+      collection(db, "users", userId, "watchlist")
+    );
+    const data = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+    }));
+    return data;
+  }, []);
+
   return {
     addDocument,
     addToWatchlist,
     checkIfInWatchlist,
     removeFromWatchlist,
+    getWatchlist,
   };
 };
