@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     await signInWithPopup(auth, provider);
     toast({
       title: "You have logged in!",
+      colorScheme: "purple",
       description: `Welcome to JDARO!`,
       status: "success",
       isClosable: true,
@@ -44,6 +45,7 @@ export const AuthProvider = ({ children }) => {
     await signOut(auth);
     toast({
       title: "Logged out",
+      colorScheme: "purple",
       description: "You have successfully logged out",
       status: "success",
       isClosable: true,

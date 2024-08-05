@@ -61,7 +61,7 @@ const Navbar = () => {
                 </MenuButton>
                 <MenuList>
                   <Link to="/watchlist">
-                    <MenuItem>Watch List</MenuItem>
+                    <MenuItem>Watchlist</MenuItem>
                   </Link>
                   <MenuItem onClick={logout}>Logout</MenuItem>
                 </MenuList>

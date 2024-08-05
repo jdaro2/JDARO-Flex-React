@@ -34,6 +34,7 @@ export const useFirestore = () => {
       toast({
         title: "Success",
         description: "Added to your watchlist",
+        colorScheme: "purple",
         status: "success",
         isClosable: true,
       });
@@ -72,6 +73,7 @@ export const useFirestore = () => {
       toast({
         title: "Success!",
         description: "Removed from your watchlist",
+        colorScheme: "purple",
         status: "success",
         isClosable: true,
       });
