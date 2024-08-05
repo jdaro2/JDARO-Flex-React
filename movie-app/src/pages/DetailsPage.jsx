@@ -101,7 +101,7 @@ const DetailsPage = () => {
 
         // Set recommendations
         setRecommendation(recommendationsData?.results.slice(0, 12));
-        console.log(recommendationsData, "recommendations data");
+        // console.log(recommendationsData, "recommendations data");
       } catch (error) {
         console.log(error, "error");
       } finally {
