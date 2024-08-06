@@ -35,6 +35,7 @@ const ImageSlider = ({ slides }) => {
         autoFocus
         showIndicators={false}
         centerSlidePercentage={50}
+        swipeable={false}
       >
         {slides.map((slide) => {
           return (
