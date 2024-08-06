@@ -75,3 +75,10 @@ export const fetchRecommendations = async (type, id) => {
 
   return res?.data;
 };
+
+// Currently in theatres
+export const fetchCurrentlyInTheatres = async () => {
+  const res = await axios.get(`${baseUrl}/movie/now_playing?api_key=${apiKey}`);
+
+  return await res?.data;
+};
