@@ -46,7 +46,7 @@ const Home = () => {
   }, [timeWindow]);
 
   // console.log(data, "data");
-  console.log(inTheatres, "In theatres");
+  // console.log(inTheatres, "In theatres");
 
   return (
     <Container maxW={"container.xl"}>

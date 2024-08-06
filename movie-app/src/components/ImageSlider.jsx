@@ -8,7 +8,7 @@ import { StarIcon } from "@chakra-ui/icons";
 
 // If you want to use your own Selectors look up the Advancaed Story book examples
 const ImageSlider = ({ slides }) => {
-  console.log(slides, "slides");
+  // console.log(slides, "slides");
 
   return (
     <Box
