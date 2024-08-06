@@ -21,6 +21,12 @@ const ImageSlider = ({ slides }) => {
     autoplaySpeed: 5000,
   };
 
+  const settings = {
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
+
   return (
     <Box
       position={"relative"}
