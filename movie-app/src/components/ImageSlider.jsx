@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ImageSlider = ({ slides }) => {
-  console.log(slides, "slides");
+  // console.log(slides, "slides");
 
   const settings = {
     dots: true,
