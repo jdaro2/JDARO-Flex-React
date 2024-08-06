@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-// import { Carousel } from "react-responsive-carousel";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { imagePathOriginal } from "../services/api";
 import { Link } from "react-router-dom";
 import { handleScrollToTop } from "../utils/helpers";
@@ -11,9 +9,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Credits to: https://codesandbox.io/s/chakra-ui-carousel-wgdp6?file=/src/SlideData.js:0-970 as I built off their framework
-
-// If you want to use your own Selectors look up the Advancaed Story book examples
 const ImageSlider = ({ slides }) => {
   console.log(slides, "slides");
 
