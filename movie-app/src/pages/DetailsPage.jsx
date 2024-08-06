@@ -368,7 +368,7 @@ const DetailsPage = () => {
                     />
                   ) : (
                     <Image
-                      src="./Default-Actor.png"
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png"
                       alt={item?.title || item?.name}
                       w={"100%"}
                       height={"250px"}
