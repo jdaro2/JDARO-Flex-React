@@ -331,15 +331,7 @@ const DetailsPage = () => {
         <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
           Cast
         </Heading>
-        <Flex
-          mt="5"
-          mb="10"
-          overflowX={"scroll"}
-          gap="5"
-          borderStyle={"solid"}
-          borderColor={"white"}
-          borderWidth={"5px"}
-        >
+        <Flex mt="5" mb="10" overflowX={"scroll"} gap="5">
           {cast?.length === 0 && <Text>No cast found</Text>}
           {cast &&
             cast?.map((item) => (
