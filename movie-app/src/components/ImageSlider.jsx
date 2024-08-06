@@ -45,7 +45,6 @@ const ImageSlider = ({ slides }) => {
                     alt={slide?.title || slide?.name}
                     maxW={"100%"}
                     height={"auto"}
-                    width="100%"
                   />
 
                   <Text textAlign={"center"}>
