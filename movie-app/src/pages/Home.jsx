@@ -7,11 +7,14 @@ import {
   Heading,
   Skeleton,
 } from "@chakra-ui/react";
-import { fetchTrending } from "../services/api";
+import { fetchTrending, fetchCurrentlyInTheatres } from "../services/api";
 import CardComponent from "../components/CardComponent";
+import { SlideData } from "../SlideData";
+import ImageSlider from "../components/ImageSlider";
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const [inTheatres, setInTheatres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [timeWindow, setTimeWindow] = useState("day");
 
@@ -28,16 +31,36 @@ const Home = () => {
       .finally(() => {
         setLoading(false);
       });
+
+    fetchCurrentlyInTheatres()
+      .then((res) => {
+        // console.log(res?.results, "in theatres");
+        setInTheatres(res?.results);
+      })
+      .catch((err) => {
+        console.log(err, "error");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [timeWindow]);
 
   // console.log(data, "data");
+  console.log(inTheatres, "In theatres");
 
   return (
     <Container maxW={"container.xl"}>
+      <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
+        Currently in Theatres
+      </Heading>
+      <Box w="100%" p={4} color="white" height="">
+        <ImageSlider slides={inTheatres} />
+      </Box>
       <Flex alignItems={"baseline"} gap={"4"} my={"10"}>
         <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
           Trending Movies & TV Shows
         </Heading>
+
         <Flex
           alignItems={"center"}
           gap={"2"}
