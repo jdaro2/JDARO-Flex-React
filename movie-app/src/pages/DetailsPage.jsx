@@ -331,13 +331,22 @@ const DetailsPage = () => {
         <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
           Cast
         </Heading>
-        <Flex mt="5" mb="10" overflowX={"scroll"} gap="5">
+        <Flex
+          mt="5"
+          mb="10"
+          overflowX={"scroll"}
+          gap="5"
+          borderStyle={"solid"}
+          borderColor={"white"}
+          borderWidth={"5px"}
+        >
           {cast?.length === 0 && <Text>No cast found</Text>}
           {cast &&
             cast?.map((item) => (
               <Box
                 key={item?.id}
                 minW={"175px"}
+                m="5"
                 _hover={{
                   transform: { base: "scale(1)", md: "scale(1.08)" },
                   transition: "transform 0.2s ease-in-out",

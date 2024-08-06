@@ -36,6 +36,7 @@ const Search = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchValue(tempSearchValue);
+    setActivePage(1);
   };
 
   return (
