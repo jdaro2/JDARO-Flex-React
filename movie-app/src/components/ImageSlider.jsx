@@ -29,15 +29,13 @@ const ImageSlider = ({ slides }) => {
             <Box>
               {/* Desktop */}
 
-              <Flex
-                display={{ base: "none", md: "flex" }}
-                alignContent={"center"}
-              >
+              <Flex display={{ base: "none", md: "flex" }}>
                 <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
                   <Image
                     src={`${imagePathOriginal}/${slide?.backdrop_path}`}
                     alt={slide?.title || slide?.name}
                     height={"auto"}
+                    width="100%"
                   />
 
                   <Text textAlign={"center"}>
