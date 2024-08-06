@@ -215,7 +215,7 @@ const DetailsPage = () => {
               />
             ) : (
               <Image
-                src="https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="
+                src="../no-image-available.jpg"
                 alt={details?.title || details?.name}
                 w={"300px"}
                 height={"400px"}
@@ -331,7 +331,15 @@ const DetailsPage = () => {
         <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
           Cast
         </Heading>
-        <Flex mt="5" mb="10" overflowX={"scroll"} gap="5">
+        <Flex
+          mt="5"
+          mb="10"
+          overflowX={"scroll"}
+          gap="5"
+          borderStyle={"solid"}
+          borderColor={"white"}
+          borderWidth={"5px"}
+        >
           {cast?.length === 0 && <Text>No cast found</Text>}
           {cast &&
             cast?.map((item) => (
@@ -360,7 +368,7 @@ const DetailsPage = () => {
                     />
                   ) : (
                     <Image
-                      src="https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png"
+                      src="./Default-Actor.png"
                       alt={item?.title || item?.name}
                       w={"100%"}
                       height={"250px"}

@@ -9,11 +9,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Credits to: https://codesandbox.io/s/chakra-ui-carousel-wgdp6?file=/src/SlideData.js:0-970 as I built off of his framework
+// Credits to: https://codesandbox.io/s/chakra-ui-carousel-wgdp6?file=/src/SlideData.js:0-970 as I built off their framework
 
 // If you want to use your own Selectors look up the Advancaed Story book examples
 const ImageSlider = ({ slides }) => {
-  // console.log(slides, "slides");
+  console.log(slides, "slides");
 
   const settings = {
     dots: true,
@@ -32,7 +32,7 @@ const ImageSlider = ({ slides }) => {
         {slides.map((slide) => {
           return (
             <Box>
-              {/* Desktop */}
+              {/* Mobile */}
 
               <Flex display={{ base: "none", md: "flex" }}>
                 <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
