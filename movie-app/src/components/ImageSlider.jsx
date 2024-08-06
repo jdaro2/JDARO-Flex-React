@@ -22,7 +22,12 @@ const ImageSlider = ({ slides }) => {
   };
 
   return (
-    <Box position={"relative"} transform={"scale(1)"} height={"100%"}>
+    <Box
+      position={"relative"}
+      transform={"scale(1)"}
+      maxW={"100%"}
+      height={"auto"}
+    >
       <Slider {...settings}>
         {slides.map((slide) => {
           return (
@@ -37,6 +42,7 @@ const ImageSlider = ({ slides }) => {
                   <Image
                     src={`${imagePathOriginal}/${slide?.backdrop_path}`}
                     alt={slide?.title || slide?.name}
+                    maxW={"100%"}
                     height={"auto"}
                   />
 
