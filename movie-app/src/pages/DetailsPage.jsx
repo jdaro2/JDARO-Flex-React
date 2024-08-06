@@ -215,7 +215,7 @@ const DetailsPage = () => {
               />
             ) : (
               <Image
-                src="../no-image-available.jpg"
+                src="https://media.istockphoto.com/id/1472933890/vector/no-image-vector-symbol-missing-available-icon-no-gallery-for-this-moment-placeholder.jpg?s=612x612&w=0&k=20&c=Rdn-lecwAj8ciQEccm0Ep2RX50FCuUJOaEM8qQjiLL0="
                 alt={details?.title || details?.name}
                 w={"300px"}
                 height={"400px"}
@@ -359,7 +359,7 @@ const DetailsPage = () => {
                     />
                   ) : (
                     <Image
-                      src="./Default-Actor.png"
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png"
                       alt={item?.title || item?.name}
                       w={"100%"}
                       height={"250px"}
