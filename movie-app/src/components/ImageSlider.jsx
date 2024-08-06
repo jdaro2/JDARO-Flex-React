@@ -22,7 +22,19 @@ const ImageSlider = ({ slides }) => {
   };
 
   return (
-    <Box position={"relative"} transform={"scale(1)"} height={"100%"}>
+    <Box
+      position={"relative"}
+      transform={"scale(1)"}
+      height={"100%"}
+      _hover={{
+        transform: { base: "scale(1)", md: "scale(1.02)" },
+        transition: "transform 0.2s ease-in-out",
+        zIndex: "10",
+        "& .overlay": {
+          opacity: 1,
+        },
+      }}
+    >
       <Slider {...settings}>
         {slides.map((slide) => {
           return (
