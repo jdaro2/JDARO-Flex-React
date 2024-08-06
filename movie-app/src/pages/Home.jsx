@@ -5,11 +5,11 @@ import {
   Flex,
   Grid,
   Heading,
+  Select,
   Skeleton,
 } from "@chakra-ui/react";
 import { fetchTrending, fetchCurrentlyInTheatres } from "../services/api";
 import CardComponent from "../components/CardComponent";
-import { SlideData } from "../SlideData";
 import ImageSlider from "../components/ImageSlider";
 
 const Home = () => {
@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <Container maxW={"container.xl"}>
       <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
-        Currently in Theatres
+        Watch now in theatres!
       </Heading>
       <Box w="100%" p={4} color="white" height="">
         <ImageSlider slides={inTheatres} />
@@ -61,11 +61,13 @@ const Home = () => {
           Trending Movies & TV Shows
         </Heading>
 
+        {/* Desktop */}
         <Flex
           alignItems={"center"}
           gap={"2"}
           border={"1px solid teal"}
           borderRadius={"20px"}
+          display={{ base: "none", md: "flex" }}
         >
           <Box
             as="button"
@@ -88,6 +90,18 @@ const Home = () => {
             This Week
           </Box>
         </Flex>
+        {/* Mobile */}
+        <Select
+          w={"150px"}
+          onChange={(e) => {
+            setTimeWindow(e.target.value);
+          }}
+          display={{ base: "flex", md: "none" }}
+        >
+          <option value="day">Today</option>
+          {/* &vote_count.gte=1000 */}
+          <option value="week">This Week</option>
+        </Select>
       </Flex>
       {/* {loading && <div>Loading...</div>} */}
       <Grid

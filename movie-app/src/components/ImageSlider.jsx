@@ -38,49 +38,75 @@ const ImageSlider = ({ slides }) => {
       >
         {slides.map((slide) => {
           return (
-            <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
-              <Box
-                position={"relative"}
-                transform={"scale(1)"}
-                height={"100%"}
-                mb="10"
-                _hover={{
-                  transform: { base: "scale(1)", md: "scale(1.0)" },
-                  transition: "transform 0.2s ease-in-out",
-                  zIndex: "10",
-                  "& .overlay": {
-                    opacity: 1,
-                  },
-                }}
-              >
-                <Image
-                  src={`${imagePathOriginal}/${slide?.backdrop_path}`}
-                  alt={slide?.title || slide?.name}
-                  height={"auto"}
-                  width="800px"
-                />
+            <Box>
+              {/* Mobile */}
 
-                <Text textAlign={"center"}>{slide?.title || slide?.name}</Text>
-                <Text
-                  textAlign={"center"}
-                  fontSize={"x-small"}
-                  color={"purple.200"}
-                >
-                  {new Date(
-                    slide?.release_date || slide?.first_air_date
-                  ).getFullYear() || "N/A"}
-                </Text>
-                <Flex
-                  alignItems={"center"}
-                  justifyContent={"center"}
-                  gap={"2"}
-                  mt={"4"}
-                >
-                  <StarIcon fontSize={"small"} />
-                  <Text>{slide?.vote_average?.toFixed(1)}</Text>
-                </Flex>
-              </Box>
-            </Link>
+              <Flex display={{ base: "none", md: "flex" }}>
+                <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
+                  <Image
+                    src={`${imagePathOriginal}/${slide?.backdrop_path}`}
+                    alt={slide?.title || slide?.name}
+                    height={"auto"}
+                    width="800px"
+                  />
+
+                  <Text textAlign={"center"}>
+                    {slide?.title || slide?.name}
+                  </Text>
+                  <Text
+                    textAlign={"center"}
+                    fontSize={"x-small"}
+                    color={"purple.200"}
+                  >
+                    {new Date(
+                      slide?.release_date || slide?.first_air_date
+                    ).getFullYear() || "N/A"}
+                  </Text>
+                  <Flex
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    gap={"2"}
+                    mt={"4"}
+                  >
+                    <StarIcon fontSize={"small"} />
+                    <Text>{slide?.vote_average?.toFixed(1)}</Text>
+                  </Flex>
+                </Link>
+              </Flex>
+              {/* Mobile */}
+              <Flex display={{ base: "flex", md: "none" }}>
+                <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
+                  <Image
+                    src={`${imagePathOriginal}/${slide?.poster_path}`}
+                    alt={slide?.title || slide?.name}
+                    height={"auto"}
+                    width="800px"
+                  />
+
+                  <Text textAlign={"center"}>
+                    {slide?.title || slide?.name}
+                  </Text>
+                  <Text
+                    textAlign={"center"}
+                    fontSize={"x-small"}
+                    color={"purple.200"}
+                  >
+                    {new Date(
+                      slide?.release_date || slide?.first_air_date
+                    ).getFullYear() || "N/A"}
+                  </Text>
+                  <Flex
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                    gap={"2"}
+                    mt={"4"}
+                  >
+                    <StarIcon fontSize={"small"} />
+                    <Text>{slide?.vote_average?.toFixed(1)}</Text>
+                  </Flex>
+                </Link>
+              </Flex>
+            </Box>
           );
         })}
       </Carousel>
