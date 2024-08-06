@@ -87,7 +87,7 @@ const Search = () => {
           !isLoading &&
           data?.map((item, i) =>
             isLoading ? (
-              <Skeleton height={300} key={i} />
+              <Skeleton height={"500px"} key={i} />
             ) : (
               <CardComponent
                 key={item?.id}
