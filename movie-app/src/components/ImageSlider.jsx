@@ -19,6 +19,7 @@ const ImageSlider = ({ slides }) => {
     dots: true,
     autoplay: true,
     autoplaySpeed: 5000,
+    swipeToSlide: true,
   };
 
   return (
