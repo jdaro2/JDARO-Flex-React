@@ -1,16 +1,25 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import { Carousel } from "react-responsive-carousel";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { imagePathOriginal } from "../services/api";
 import { Link } from "react-router-dom";
 import { handleScrollToTop } from "../utils/helpers";
 import { StarIcon } from "@chakra-ui/icons";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // Credits to: https://codesandbox.io/s/chakra-ui-carousel-wgdp6?file=/src/SlideData.js:0-970 as I built off of his framework
 
 // If you want to use your own Selectors look up the Advancaed Story book examples
 const ImageSlider = ({ slides }) => {
   // console.log(slides, "slides");
+
+  const settings = {
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
 
   return (
     <Box
@@ -26,17 +35,7 @@ const ImageSlider = ({ slides }) => {
         },
       }}
     >
-      <Carousel
-        infiniteLoop
-        autoPlay
-        interval={6000}
-        transitionTime={600}
-        useKeyboardArrows={true}
-        autoFocus
-        showIndicators={false}
-        centerSlidePercentage={50}
-        swipeable={false}
-      >
+      <Slider {...settings}>
         {slides.map((slide) => {
           return (
             <Box>
@@ -48,7 +47,7 @@ const ImageSlider = ({ slides }) => {
                     src={`${imagePathOriginal}/${slide?.backdrop_path}`}
                     alt={slide?.title || slide?.name}
                     height={"auto"}
-                    width="800px"
+                    width="100%"
                   />
 
                   <Text textAlign={"center"}>
@@ -110,7 +109,7 @@ const ImageSlider = ({ slides }) => {
             </Box>
           );
         })}
-      </Carousel>
+      </Slider>
     </Box>
   );
 };
