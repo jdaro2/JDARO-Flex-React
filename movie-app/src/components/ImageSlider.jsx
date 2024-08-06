@@ -26,7 +26,16 @@ const ImageSlider = ({ slides }) => {
         },
       }}
     >
-      <Carousel infiniteLoop autoPlay interval={6000}>
+      <Carousel
+        infiniteLoop
+        autoPlay
+        interval={6000}
+        transitionTime={600}
+        useKeyboardArrows={true}
+        autoFocus
+        showIndicators={false}
+        centerSlidePercentage={50}
+      >
         {slides.map((slide) => {
           return (
             <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
