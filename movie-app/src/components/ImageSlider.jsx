@@ -25,9 +25,9 @@ const ImageSlider = ({ slides }) => {
   return (
     <Box
       position={"relative"}
-      transform={"scale(1)"}
       maxW={"100%"}
       height={"auto"}
+      className="slider-container"
     >
       <Slider {...settings}>
         {slides.map((slide) => {
