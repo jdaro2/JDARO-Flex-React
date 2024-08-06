@@ -53,7 +53,7 @@ const Home = () => {
       <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
         Watch now in theatres!
       </Heading>
-      <Box w="100%" p={4} color="white" height="">
+      <Box w="100%" pt="4" color="white" height="">
         <ImageSlider slides={inTheatres} />
       </Box>
       <Flex alignItems={"baseline"} gap={"4"} my={"10"}>

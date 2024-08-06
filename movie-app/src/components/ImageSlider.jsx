@@ -39,7 +39,7 @@ const ImageSlider = ({ slides }) => {
         {slides.map((slide) => {
           return (
             <Box>
-              {/* Mobile */}
+              {/* Desktop */}
 
               <Flex display={{ base: "none", md: "flex" }}>
                 <Link to={`/movie/${slide?.id}`} onClick={handleScrollToTop}>
