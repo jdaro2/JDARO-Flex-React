@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { handleScrollToTop } from "../utils/helpers";
 import { StarIcon } from "@chakra-ui/icons";
 
+// Credits to: https://codesandbox.io/s/chakra-ui-carousel-wgdp6?file=/src/SlideData.js:0-970 as I built off of his framework
+
 // If you want to use your own Selectors look up the Advancaed Story book examples
 const ImageSlider = ({ slides }) => {
   // console.log(slides, "slides");
