@@ -106,7 +106,7 @@ const Home = () => {
       {/* {loading && <div>Loading...</div>} */}
       <Grid
         templateColumns={{
-          base: "1fr",
+          base: "repeat(2, 1fr)",
           sm: "repeat(2, 1fr)",
           md: "repeat(4, 1fr)",
           lg: "repeat(5, 1fr)",
