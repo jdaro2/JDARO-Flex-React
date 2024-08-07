@@ -11,9 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 const ImageSlider = ({ slides }) => {
   // console.log(slides, "slides");
-
   const settings = {
-    dots: true,
+    dots: false,
     autoplay: true,
     autoplaySpeed: 5000,
   };
@@ -40,12 +39,12 @@ const ImageSlider = ({ slides }) => {
                     width="100%"
                   />
 
-                  <Text textAlign={"center"}>
+                  <Text textAlign={"center"} fontSize={"xl"}>
                     {slide?.title || slide?.name}
                   </Text>
                   <Text
                     textAlign={"center"}
-                    fontSize={"x-small"}
+                    fontSize={"medium"}
                     color={"purple.200"}
                   >
                     {new Date(
@@ -58,8 +57,10 @@ const ImageSlider = ({ slides }) => {
                     gap={"2"}
                     mt={"4"}
                   >
-                    <StarIcon fontSize={"small"} />
-                    <Text>{slide?.vote_average?.toFixed(1)}</Text>
+                    <StarIcon fontSize={"md"} />
+                    <Text fontSize={"large"}>
+                      {slide?.vote_average?.toFixed(1)}
+                    </Text>
                   </Flex>
                 </Link>
               </Flex>
@@ -73,13 +74,13 @@ const ImageSlider = ({ slides }) => {
                     width="800px"
                   />
 
-                  <Text textAlign={"center"}>
+                  <Text textAlign={"center"} fontSize={"xl"}>
                     {slide?.title || slide?.name}
                   </Text>
                   <Text
                     textAlign={"center"}
-                    fontSize={"x-small"}
                     color={"purple.200"}
+                    fontSize={"s"}
                   >
                     {new Date(
                       slide?.release_date || slide?.first_air_date
@@ -91,8 +92,10 @@ const ImageSlider = ({ slides }) => {
                     gap={"2"}
                     mt={"4"}
                   >
-                    <StarIcon fontSize={"small"} />
-                    <Text>{slide?.vote_average?.toFixed(1)}</Text>
+                    <StarIcon fontSize={"md"} />
+                    <Text fontSize={"md"}>
+                      {slide?.vote_average?.toFixed(1)}
+                    </Text>
                   </Flex>
                 </Link>
               </Flex>
