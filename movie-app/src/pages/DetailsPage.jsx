@@ -336,8 +336,8 @@ const DetailsPage = () => {
           mb="10"
           overflowX={"scroll"}
           gap="5"
-          borderStyle={"solid"}
-          borderColor={"white"}
+          borderStyle={"ridge"}
+          borderColor={"grey.400"}
           borderWidth={"5px"}
         >
           {cast?.length === 0 && <Text>No cast found</Text>}
@@ -346,7 +346,8 @@ const DetailsPage = () => {
               <Box
                 key={item?.id}
                 minW={"175px"}
-                m="5"
+                my="5"
+                mx={"1.3"}
                 _hover={{
                   transform: { base: "scale(1)", md: "scale(1.08)" },
                   transition: "transform 0.2s ease-in-out",
